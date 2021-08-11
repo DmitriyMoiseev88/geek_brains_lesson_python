@@ -350,7 +350,7 @@
 # print(my_struct)
 
 # Аналитика о товарах
-from typing import Dict, List, Tuple, Union
+# from typing import Dict, List, Tuple, Union
 #
 # my_struct_list = [
 #     (1, {"название": "компьютер", "цена": 20000, "колличество": 5, "ед": "шт."}),
