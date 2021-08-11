@@ -792,7 +792,7 @@
 #
 # print(time_hamilton)
 
-import datetime as dt
+# import datetime as dt
 
 # UTC_OFFSET = {
 #     'Санкт-Петербург': 3,
