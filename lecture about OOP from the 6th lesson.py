@@ -195,19 +195,58 @@
 # тоже работает и с методами
 # def __get_password - полностью защищеный метод
 # доступен только в нутори другого метода
+class Person:
+    def __init__(self, name, surname, phone, login, password):
+        self.name = name # self-это публичный атриб. Доступ через .
+        self.surname = surname
+        self.phone = phone
+        self._login = login # private # условно защищенный атриб - на уровне договоренности
+        # если есть _ должен использоваться в этом классе или дочерних клс. Где-то из вне не меняем
+        # можно вызывать, что-то возврашать
+        self.__password = password # Protected # полностью приватный - внутрений атриб.
+        # защищен от внешнего обрашения, попытки переосвоения
+
+    def get_login(self):
+        return self._login
+
+    # с ними можно работать только в нутри класса
+    def __get_password(self):
+        return self.__password # вернули через метод внутрений, зашишенный атриб. Тогда в экз.клс можно получить значение
+# чтобы изменить значение мне нужно прописать в методе
+    def set_password(self, new_password): # 2ым арг. задаем новый пароль
+        self.__password = new_password # значение нового пароля сохранили
+        self.__get_password() # могу вызвать защищенный метол здесь
+# тоже работает и с методами
+# def __get_password - полностью защищеный метод
+# доступен только в нутори другого метода
 
 # уровни доступа к моим атриб.экз.клс и методов клс. в том числе
 Anna = Person("Anna", "Danilova", "223-322", "anna-dan", "Qwerty")
-#print(Anna.name) #публичный атриб. - через имя экз.клс (просим вернуть имя)
+print(Anna.name) #публичный атриб. - через имя экз.клс (просим вернуть имя)
 # это имя я могу поменять, отпринтовать...
-#Anna.name = 'Не Анна'
-# print(Anna.name)
-# Anna._login = "cnsdas"
-# print(Anna._login)
-# print(Anna.get_login()) # публичный атриб.- так же и для метода экз.клс
-# print(Anna.get_password())
+Anna.name = 'Не Анна'
+print(Anna.name)
+Anna._login = "cnsdas"
+print(Anna._login)
+print(Anna.get_login()) # публичный атриб.- так же и для метода экз.клс
+print(Anna.get_password())
 # злесь проверяем и меняем пароль
-#print(Anna.get_password())
-#Anna.set_password("Qwerty12345")
-#print(Anna.get_password())
-#print(Anna.__get_password()) # будет ошибка, метод не доступен
+print(Anna.get_password())
+Anna.set_password("Qwerty12345")
+print(Anna.get_password())
+
+# уровни доступа к моим атриб.экз.клс и методов клс. в том числе
+Anna = Person("Anna", "Danilova", "223-322", "anna-dan", "Qwerty")
+print(Anna.name) #публичный атриб. - через имя экз.клс (просим вернуть имя)
+# это имя я могу поменять, отпринтовать...
+Anna.name = 'Не Анна'
+print(Anna.name)
+Anna._login = "cnsdas"
+print(Anna._login)
+print(Anna.get_login()) # публичный атриб.- так же и для метода экз.клс
+print(Anna.get_password())
+# злесь проверяем и меняем пароль
+print(Anna.get_password())
+Anna.set_password("Qwerty12345")
+print(Anna.get_password())
+print(Anna.__get_password()) # будет ошибка, метод не доступен
